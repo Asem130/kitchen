@@ -1,6 +1,6 @@
-import 'package:advanced_app/presentation/resources/assets_manger.dart';
-import 'package:advanced_app/presentation/resources/color_manger.dart';
 import 'package:flutter/material.dart';
+import 'package:kitchen/presentation/resources/assets_manger.dart';
+import 'package:kitchen/presentation/resources/color_manger.dart';
 
 class SplashView extends StatelessWidget {
   const SplashView({super.key});

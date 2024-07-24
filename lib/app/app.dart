@@ -1,6 +1,7 @@
-import 'package:advanced_app/presentation/resources/routes_manger.dart';
-import 'package:advanced_app/presentation/resources/theme_manger.dart';
+
 import 'package:flutter/material.dart';
+import 'package:kitchen/presentation/resources/routes_manger.dart';
+import 'package:kitchen/presentation/resources/theme_manger.dart';
 
 class MyApp extends StatefulWidget {
   MyApp._internal();

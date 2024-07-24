@@ -1,8 +1,8 @@
-import 'package:advanced_app/presentation/resources/color_manger.dart';
-import 'package:advanced_app/presentation/resources/font_manger.dart';
-import 'package:advanced_app/presentation/resources/styles_manger.dart';
-import 'package:advanced_app/presentation/resources/values_manger.dart';
 import 'package:flutter/material.dart';
+import 'package:kitchen/presentation/resources/color_manger.dart';
+import 'package:kitchen/presentation/resources/font_manger.dart';
+import 'package:kitchen/presentation/resources/styles_manger.dart';
+import 'package:kitchen/presentation/resources/values_manger.dart';
 
 ThemeData getApplicationTheme() {
   return ThemeData(
