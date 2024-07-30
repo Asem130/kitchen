@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:kitchen/presentation/forgot_password/forgot_password.dart';
 import 'package:kitchen/presentation/login/login_view.dart';
 import 'package:kitchen/presentation/main/main_view.dart';
-import 'package:kitchen/presentation/onboarding/onboarding_view.dart';
+import 'package:kitchen/presentation/onboarding/view/onboarding_view.dart';
 import 'package:kitchen/presentation/register/register_view.dart';
 import 'package:kitchen/presentation/splash/splash_view.dart';
 import 'package:kitchen/presentation/store_details/store_details.dart';

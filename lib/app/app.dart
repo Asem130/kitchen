@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:kitchen/presentation/resources/routes_manger.dart';
 import 'package:kitchen/presentation/resources/theme_manger.dart';
@@ -15,10 +14,10 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       initialRoute: Routes.splashRoute,
       onGenerateRoute: RouteGenerator.getRoute,
       theme: getApplicationTheme(),
-    );
+  );
   }
 }
-  

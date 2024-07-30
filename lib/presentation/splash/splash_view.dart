@@ -14,13 +14,19 @@ class SplashView extends StatefulWidget {
 
 class _SplashViewState extends State<SplashView> {
   Timer? _timer;
-  _startDelay() {
-    _timer = Timer(const Duration(seconds: 3), _goNext());
+  @override
+  void initState() {
+    super.initState();
+    _startDelay();
   }
 
-  _goNext() {
-    Navigator.pushReplacementNamed(context, Routes.onBoardingRoute);
+  _startDelay() {
+    _timer = Timer(const Duration(seconds: 3), () {
+      Navigator.pushReplacementNamed(context, Routes.onBoardingRoute);
+    });
   }
+
+  
 
   @override
   Widget build(BuildContext context) {
