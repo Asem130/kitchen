@@ -3,6 +3,8 @@ import 'dart:async';
 import 'package:kitchen/domain/usecase/login_usecase.dart';
 import 'package:kitchen/presentation/base/base_view_model.dart';
 import 'package:kitchen/presentation/common/freezed_data_classes.dart';
+import 'package:kitchen/presentation/common/state_render/state_render.dart';
+import 'package:kitchen/presentation/common/state_render/state_renderer_impl.dart';
 
 class LoginViewModel extends BaseViewModel
     with LoginViewModelInput, LoginViewModelOutput {
@@ -16,27 +18,30 @@ class LoginViewModel extends BaseViewModel
   LoginViewModel(this._loginUseCase);
   @override
   void dispose() {
+    super.dispose();
     _passwordStreamController.close();
     _userNameStreamController.close();
     _allDataValidController.close();
   }
 
   @override
-  void start() {}
+  void start() {
+    inputState.add(ContentState());
+  }
+
   // inputs
   @override
   setPassword(String password) {
     inputpassword.add(password);
     loginObject = loginObject.copyWith(password: password);
     inputAllDataValid.add(null);
-
   }
 
   @override
   setUsername(String name) {
     inputUserName.add(name);
     loginObject = loginObject.copyWith(userName: name);
-     inputAllDataValid.add(null);
+    inputAllDataValid.add(null);
   }
 
   @override
@@ -48,10 +53,19 @@ class LoginViewModel extends BaseViewModel
 
   @override
   login() async {
+    inputState.add(LoadingState(
+        stateRenderType: StateRenderType.popUpLoadingState,
+        message: "loading..."));
     (await _loginUseCase.excute(
             LoginUseCaseInput(loginObject.userName, loginObject.password)))
-        .fold((failure) => {print(failure.message)},
-            (data) => {print(data.customer?.name)});
+        .fold((failure) => {
+          inputState.add(ErrorState(StateRenderType.popUpErrorState,failure.message))
+        
+          },
+            (data) => {
+             inputState.add(ContentState())
+              
+              });
   }
 
   // outputs
@@ -64,8 +78,8 @@ class LoginViewModel extends BaseViewModel
   Stream<bool> get outUserNameValid => _userNameStreamController.stream.map(
         (userName) => _isUserNameValid(userName),
       );
-  Stream<bool> get outputAllDataValid => _userNameStreamController.stream.map(
-        (_) =>_areAllDataValid());
+  Stream<bool> get outputAllDataValid =>
+      _userNameStreamController.stream.map((_) => _areAllDataValid());
 
   bool _isPasswordValid(String password) {
     return password.isNotEmpty;
@@ -74,9 +88,10 @@ class LoginViewModel extends BaseViewModel
   bool _isUserNameValid(String userName) {
     return userName.isNotEmpty;
   }
-  bool _areAllDataValid()
-  {
-    return _isPasswordValid(loginObject.password) && _isUserNameValid(loginObject.userName);
+
+  bool _areAllDataValid() {
+    return _isPasswordValid(loginObject.password) &&
+        _isUserNameValid(loginObject.userName);
   }
 }
 

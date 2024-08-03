@@ -1,6 +1,5 @@
-
-
 import 'package:flutter/material.dart';
+import 'package:kitchen/app/di.dart';
 import 'package:kitchen/presentation/forgot_password/forgot_password.dart';
 import 'package:kitchen/presentation/login/view/login_view.dart';
 import 'package:kitchen/presentation/main/main_view.dart';
@@ -25,6 +24,7 @@ class RouteGenerator {
       case Routes.splashRoute:
         return MaterialPageRoute(builder: (_) => const SplashView());
       case Routes.loginRoute:
+         initLoginModule();
         return MaterialPageRoute(builder: (_) => const LoginView());
       case Routes.onBoardingRoute:
         return MaterialPageRoute(builder: (_) => const OnBoardingView());
@@ -45,9 +45,9 @@ class RouteGenerator {
     return MaterialPageRoute(
         builder: (_) => Scaffold(
               appBar: AppBar(
-                title: const  Text('AppStrings.noRouteFound.tr()'),
+                title: const Text('AppStrings.noRouteFound.tr()'),
               ),
-              body:const Center(child: Text('AppStrings.noRouteFound.tr()')),
+              body: const Center(child: Text('AppStrings.noRouteFound.tr()')),
             ));
   }
 }
